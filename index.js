@@ -2,7 +2,11 @@ import express from "express";
 import bodyParser from "body-parser";
 
 const app = express();
-const port = 3000;
+const PORT = process.env.PORT || 3000;
+
+app.listen(PORT, () => {
+  console.log(`Server is running on port ${PORT}`);
+});
 
 app.use(express.static("public"));
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -18,10 +22,6 @@ app.post("/submit", (req, res) => {
     adjective: randomAdj,
     noun: randomNoun,
   });
-});
-
-app.listen(port, () => {
-  console.log(`Listening on port ${port}`);
 });
 
 const adj = [
