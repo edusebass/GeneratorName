@@ -1,0 +1,13 @@
+{
+    "routes": [
+      {
+        "src": "/(.+\\.ejs)",
+        "dest": "/api/render-ejs.js"
+      },
+      {
+        "src": "/(.*)",
+        "dest": "/index.html"
+      }
+    ]
+  }
+  
