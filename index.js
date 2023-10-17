@@ -1,28 +1,32 @@
 import express from "express";
 import bodyParser from "body-parser";
+import path from "path"; // Importa el módulo 'path' para manejar rutas de archivos.
 
 const app = express();
-const port = 3000;
+const port = process.env.PORT || 3000;
 
-// app.use(express.static("public"));
-// app.use(bodyParser.urlencoded({ extended: true }));
+app.use(express.static("public"));
+app.use(bodyParser.urlencoded({ extended: true }));
 
-// app.get("/", (req, res) => {
-//   res.render("index.ejs");
-// });
+app.set("views", path.join(__dirname, "views")); // Establece la carpeta de vistas.
+app.set("view engine", "ejs"); // Establece el motor de plantillas EJS.
 
-// app.post("/submit", (req, res) => {
-//   const randomAdj = adj[Math.floor(Math.random() * adj.length)];
-//   const randomNoun = noun[Math.floor(Math.random() * noun.length)];
-//   res.render("index.ejs", {
-//     adjective: randomAdj,
-//     noun: randomNoun,
-//   });
-// });
+app.get("/", (req, res) => {
+  res.render("index"); // Renderiza el archivo 'index.ejs' en la carpeta 'views'.
+});
+
+app.post("/submit", (req, res) => {
+  // Asegúrate de que 'adj' y 'noun' estén definidos en tu código.
+  const randomAdj = adj[Math.floor(Math.random() * adj.length)];
+  const randomNoun = noun[Math.floor(Math.random() * noun.length)];
+  res.render("index", {
+    adjective: randomAdj,
+    noun: randomNoun,
+  });
+});
 
 app.listen(port, () => {
   console.log(`Listening on port ${port}`);
-  
 });
 
 const adj = [
