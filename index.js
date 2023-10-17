@@ -7,9 +7,9 @@ const port = 3000;
 // app.use(express.static("public"));
 // app.use(bodyParser.urlencoded({ extended: true }));
 
-// app.get("/", (req, res) => {
-//   res.render("index.ejs");
-// });
+app.get("/", (req, res) => {
+  res.render("index.ejs");
+});
 
 // app.post("/submit", (req, res) => {
 //   const randomAdj = adj[Math.floor(Math.random() * adj.length)];
@@ -22,6 +22,7 @@ const port = 3000;
 
 app.listen(port, () => {
   console.log(`Listening on port ${port}`);
+  
 });
 
 const adj = [
