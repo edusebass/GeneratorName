@@ -8,8 +8,8 @@
   ],
   "routes": [
     {
-      "src": "/styles/(.*)", 
-      "dest": "/public/styles/$1" 
+      "src": "/styles/(.*)",
+      "dest": "/public/styles/$1"
     },
     {
       "src": "/(.*)",
