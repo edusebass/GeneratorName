@@ -1,30 +1,30 @@
 const express = require("express");
 const bodyParser = require("body-parser");
+const path = require("path");
 const app = express();
-const port = 3000;
+const port = process.env.PORT || 3000;
 
 
 app.use(express.static("public"));
 app.use(bodyParser.urlencoded({ extended: true }));
-
 app.use(express.json());
 
+app.set("views", path.join(__dirname, "views"));
+app.set("view engine", "ejs");
+
 app.get("/", (req, res) => {
-  res.render("index.ejs");
+  res.render("index", { adjective: "", noun: "" });
 });
 
 app.post("/submit", (req, res) => {
-
   const randomAdj = adj[Math.floor(Math.random() * adj.length)];
   const randomNoun = noun[Math.floor(Math.random() * noun.length)];
-
-  res.render("index.ejs", {adjective: randomAdj, noun: randomNoun});
+  res.render("index", { adjective: randomAdj, noun: randomNoun });
 });
 
 app.listen(port, () => {
   console.log(`Listening on port ${port}`);
 });
-
 const adj = [
   "abandoned",
   "able",
