@@ -1,22 +1,13 @@
 const express = require("express");
 const bodyParser = require("body-parser");
-
-
 const app = express();
 const port = 3000;
-
 
 
 app.use(express.static("public"));
 app.use(bodyParser.urlencoded({ extended: true }));
 
 app.use(express.json());
-
-// Habilitar el modo de depuración
-app.use((err, req, res, next) => {
-  console.error(err.stack);
-  res.status(500).send('Something broke!');
-});
 
 app.get("/", (req, res) => {
   res.render("index.ejs");
